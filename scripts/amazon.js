@@ -1,30 +1,3 @@
-// storing data for all products
-
-let products = [{
-  image: 'images/products/athletic-cotton-socks-6-pairs.jpg',
-  name: 'Black and Gray Athletic Cotton Socks - 6 Pairs',
-  rating: {
-    stars: 4.5,
-    count: 87
-  },
-  pricePence: 1120
-}, {
-  image: 'images/products/intermediate-composite-basketball.jpg',
-  name: 'Official NBA Basketball',
-  rating: {
-    stars: 2.5,
-    count: 200
-  },
-  pricePence: 2345
-}, {
-  image: 'images/products/adults-plain-cotton-tshirt-2-pack-teal.jpg',
-  name: 'Adults Plain T-Shirt - 2 Pack',
-  rating: {
-    stars: 3.5,
-    count: 97
-  },
-  pricePence: 1287
-}]
 
 // creating a variable to store all products on html
 let productsHTML = ''
