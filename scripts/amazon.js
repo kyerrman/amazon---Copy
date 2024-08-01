@@ -92,9 +92,15 @@ document.querySelectorAll('.js-add-to-cart-button')
           quantity: 1
         })
       }
-      console.log(cart)
 
-
+      // adding cart quantity and displaying on page
+      let cartQuantity = 0
+      cart.forEach((item) => {
+        cartQuantity += item.quantity
+      })
+      
+      document.querySelector('.js-cart-quantity')
+        .innerHTML = cartQuantity
     })
   })
   
