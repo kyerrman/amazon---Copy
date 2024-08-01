@@ -66,20 +66,24 @@ products.forEach((product) => {
 document.querySelector('.js-products-grid')
   .innerHTML = productsHTML
 
-
+// making add to cart buttons interactive
 document.querySelectorAll('.js-add-to-cart-button')
   .forEach((button) => {
     button.addEventListener('click', () => {
+      // selecting product id from html
       let productId = button.dataset.productId
       
+      // creat a variable to check if item is already in cart when it is being added to cart
       let isAlreadyInCart;
 
+      // loop through cart, check if item being added exists
       cart.forEach((item) => {
         if (productId === item.productId) {
           isAlreadyInCart = item
         }
       })
 
+      // if item already exists in cart, update quantity only. Else, add new item to cart
       if (isAlreadyInCart) {
         isAlreadyInCart.quantity += 1
       } else {
@@ -89,6 +93,8 @@ document.querySelectorAll('.js-add-to-cart-button')
         })
       }
       console.log(cart)
+
+
     })
   })
   
