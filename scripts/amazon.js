@@ -45,7 +45,7 @@ products.forEach((product) => {
 
       <div class="product-spacer"></div>
 
-      <div class="added-to-cart">
+      <div class="added-to-cart js-added-to-cart-${product.id}">
         <img src="images/icons/checkmark.png">
         Added
       </div>
@@ -69,7 +69,13 @@ document.querySelector('.js-products-grid')
 // making add to cart buttons interactive
 document.querySelectorAll('.js-add-to-cart-button')
   .forEach((button) => {
+    // setting a timeout ID for 'Added' message 
+    let timeoutId;
+
     button.addEventListener('click', () => {
+      // clearing timeout ID before re-running timeout
+      clearTimeout(timeoutId)
+
       // selecting product id from html
       let productId = button.dataset.productId
       
@@ -99,13 +105,22 @@ document.querySelectorAll('.js-add-to-cart-button')
 
       // adding cart quantity and displaying on page
       let cartQuantity = 0
-
       cart.forEach((item) => {
         cartQuantity += item.quantity
       })
       
       document.querySelector('.js-cart-quantity')
         .innerHTML = cartQuantity
+
+      
+      // making 'Added' message appear
+      let addedCart = document.querySelector(`.js-added-to-cart-${productId}`)
+      addedCart.classList.add('added-to-cart-visible')
+
+      // setting timeout for 'Added' message to disappear
+      timeoutId = setTimeout(() => {
+        addedCart.classList.remove('added-to-cart-visible')
+      }, 2000)
     })
   })
   
