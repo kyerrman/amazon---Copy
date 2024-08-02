@@ -29,7 +29,7 @@ products.forEach((product) => {
       </div>
 
       <div class="product-quantity-container">
-        <select>
+        <select class="selector-${product.id}">
           <option selected value="1">1</option>
           <option value="2">2</option>
           <option value="3">3</option>
@@ -83,18 +83,23 @@ document.querySelectorAll('.js-add-to-cart-button')
         }
       })
 
+
+      // calling the quantity selector
+      let quantitySelector = document.querySelector(`.selector-${productId}`)
+
       // if item already exists in cart, update quantity only. Else, add new item to cart
       if (isAlreadyInCart) {
-        isAlreadyInCart.quantity += 1
+        isAlreadyInCart.quantity += Number(quantitySelector.value)
       } else {
         cart.push({
           productId,
-          quantity: 1
+          quantity: Number(quantitySelector.value)
         })
       }
 
       // adding cart quantity and displaying on page
       let cartQuantity = 0
+
       cart.forEach((item) => {
         cartQuantity += item.quantity
       })
