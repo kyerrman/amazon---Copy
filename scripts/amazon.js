@@ -1,3 +1,5 @@
+import { cart, addToCart } from "../data/cart.js"
+import { products } from "../data/products.js"
 
 // creating a variable to store all products on html
 let productsHTML = ''
@@ -66,6 +68,20 @@ products.forEach((product) => {
 document.querySelector('.js-products-grid')
   .innerHTML = productsHTML
 
+
+function updateCartQuantity() {
+  // adding cart quantity and displaying on page
+  let cartQuantity = 0
+  cart.forEach((cartItem) => {
+    cartQuantity += cartItem.quantity
+  })
+  
+  document.querySelector('.js-cart-quantity')
+    .innerHTML = cartQuantity
+
+}
+
+
 // making add to cart buttons interactive
 document.querySelectorAll('.js-add-to-cart-button')
   .forEach((button) => {
@@ -73,54 +89,33 @@ document.querySelectorAll('.js-add-to-cart-button')
     let timeoutId;
 
     button.addEventListener('click', () => {
-      // clearing timeout ID before re-running timeout
-      clearTimeout(timeoutId)
-
       // selecting product id from html
-      let productId = button.dataset.productId
-      
-      // creat a variable to check if item is already in cart when it is being added to cart
-      let isAlreadyInCart;
-
-      // loop through cart, check if item being added exists
-      cart.forEach((item) => {
-        if (productId === item.productId) {
-          isAlreadyInCart = item
-        }
-      })
-
+      const productId = button.dataset.productId
 
       // calling the quantity selector
-      let quantitySelector = document.querySelector(`.selector-${productId}`)
-
-      // if item already exists in cart, update quantity only. Else, add new item to cart
-      if (isAlreadyInCart) {
-        isAlreadyInCart.quantity += Number(quantitySelector.value)
-      } else {
-        cart.push({
-          productId,
-          quantity: Number(quantitySelector.value)
-        })
-      }
-
-      // adding cart quantity and displaying on page
-      let cartQuantity = 0
-      cart.forEach((item) => {
-        cartQuantity += item.quantity
-      })
-      
-      document.querySelector('.js-cart-quantity')
-        .innerHTML = cartQuantity
+      const quantitySelector = document.querySelector(`.selector-${productId}`)
 
       
-      // making 'Added' message appear
-      let addedCart = document.querySelector(`.js-added-to-cart-${productId}`)
-      addedCart.classList.add('added-to-cart-visible')
+      addToCart(productId, quantitySelector)
 
-      // setting timeout for 'Added' message to disappear
-      timeoutId = setTimeout(() => {
-        addedCart.classList.remove('added-to-cart-visible')
-      }, 2000)
+      updateCartQuantity()
+      
+      confirmedAddedToCartMessage(timeoutId, productId)
+      
     })
   })
   
+function confirmedAddedToCartMessage (timeoutId, productId) {
+
+  // clearing timeout ID before re-running timeout
+  clearTimeout(timeoutId)
+
+  // making 'Added' message appear
+  let addedCart = document.querySelector(`.js-added-to-cart-${productId}`)
+  addedCart.classList.add('added-to-cart-visible')
+
+  // setting timeout for 'Added' message to disappear
+  timeoutId = setTimeout(() => {
+    addedCart.classList.remove('added-to-cart-visible')
+  }, 2000)
+}
