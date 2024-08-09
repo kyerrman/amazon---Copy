@@ -4,6 +4,7 @@ import { products } from "../data/products.js"
 // creating a variable to store all products on html
 let productsHTML = ''
 
+updateCartQuantity()
 
 // loop throuh all products and generate an HTML for each product
 products.forEach((product) => {
@@ -104,7 +105,8 @@ document.querySelectorAll('.js-add-to-cart-button')
       
     })
   })
-  
+
+// alert message confirming product is added to cart
 function confirmedAddedToCartMessage (timeoutId, productId) {
 
   // clearing timeout ID before re-running timeout

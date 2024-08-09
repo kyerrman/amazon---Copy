@@ -3,6 +3,10 @@ import { products } from "../data/products.js";
 
 let checkoutHTML = ''
 
+// call function to update checkout
+updateTotalCheckoutItems()
+
+
 // loop through cart and generate html
 cart.forEach((cartItem) => {
   let productId = cartItem.productId
@@ -113,5 +117,25 @@ document.querySelectorAll(`.js-delete-quantity-link`)
       const cartContainer = document.querySelector(`.js-cart-item-container-${productId}`)
       
       removeFromCart(productId, cartContainer)
+
+      updateTotalCheckoutItems()
     })
   })
+
+
+// create fucntion to update checkout
+function updateTotalCheckoutItems () {
+  let totalCartQuantityPage = document.querySelector('.js-total-cart-quantity')
+
+  let totalItems = 0
+
+  cart.forEach((cartItem) => {
+    totalItems += cartItem.quantity
+  })
+
+  totalItems === 1 
+    ? totalCartQuantityPage.innerHTML = `${totalItems} item`
+  : totalCartQuantityPage.innerHTML = `${totalItems} items`
+
+
+}
