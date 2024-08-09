@@ -1,5 +1,101 @@
 export const products = [
   {
+    id: "dib3dn9-dj30394-3i43i-9efnef",
+    image: "images/products/macbook-pro.jpg",
+    name: `Apple MacBook Pro 14" (512GB SSD, M3 Pro, 18GB) Laptop - Space Black - MRX33B/A (October, 2023)`,
+    rating: {
+      stars: 4.5,
+      count: 399
+    },
+    pricePence: 165099,
+    keywords: [
+      "apple",
+      "laptop",
+      "macbook"
+    ]
+  },
+  {
+    id: "wireless-mouse-gaming-1323-54543cee",
+    image: "images/products/wireless-gaming-mouse.webp",
+    name: "Gaming Wireless Mouse 2.4 GHz",
+    rating: {
+      stars: 5.0,
+      count: 2938
+    },
+    pricePence: 1547,
+    keywords: [
+      "mouse",
+      "wireless",
+      "gaming"
+    ]
+  },
+  {
+    id: "2u32i-21i2ub-092edjw-2893dwj",
+    image: "images/products/asus-laptop1.jpg",
+    name: "ASUS Strix SCAR 18 18in (2TB SSD, Intel Core i9 13980HX, 2.20 GHz, 32GB RAM, NVIDIA GeForce RTX 4090) Laptop - Black (G834JYN6005W)",
+    rating: {
+      stars: 3.5,
+      count: 20
+    },
+    pricePence: 290000,
+    keywords: [
+      "laptop",
+      "asus",
+      "gaming",
+      "pc"
+    ]
+  },
+  {
+    id: "ij8ende-239892-rejifj0i3-23onifu",
+    image: "images/products/hp-printer.webp",
+    name: "HP Deskjet 2710e /2720e All-in-One Wireless Printer White - NO INKS",
+    rating: {
+      stars: 4.0,
+      count: 47
+    },
+    pricePence: 3099,
+    keywords: [
+      "hp",
+      "printer",
+      "deskjet"
+    ]
+  },
+  {
+    id: "ujdnuihdg-23782uyb-2u8ydbi2-ubi872",
+    image: "images/products/galaxy-s23u.webp",
+    name: "Samsung Galaxy S23 Ultra - 256GB 512GB 1TB",
+    rating: {
+      stars: 4.5,
+      count: 2777
+    },
+    pricePence: 80000,
+    keywords: [
+      "mobile",
+      "phone",
+      "samsung",
+      "galaxy",
+      "s23"
+    ]
+  },
+  {
+    id: "iuwddew7-dbxiwi9-cnwfwud-28hiw",
+    image: "images/products/iphone-14pm.webp",
+    name: "Apple iPhone 14 Pro Max",
+    rating: {
+      stars: 5.0,
+      count: 400
+    },
+    pricePence: 92197,
+    keywords: [
+      "mobile",
+      "phone",
+      "apple",
+      "iphone",
+      
+    ]
+
+  },
+  {
     id: "e43638ce-6aa0-4b85-b27f-e1d07eb678c6",
     image: "images/products/athletic-cotton-socks-6-pairs.jpg",
     name: "Black and Gray Athletic Cotton Socks - 6 Pairs",
