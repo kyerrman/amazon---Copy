@@ -54,7 +54,7 @@ function saveToStorage () {
   localStorage.setItem('cart', JSON.stringify(cart))
 }
 
-export function updateQuantitty (productId, newQuantity, cartContainer) {
+export function updateQuantitty (productId, newQuantity, quantityLabel) {
   let matchingCart;
 
   cart.forEach((cartItem) => {
@@ -66,9 +66,12 @@ export function updateQuantitty (productId, newQuantity, cartContainer) {
   if (newQuantity <= 0 || newQuantity > 10) {
     alert('Quantity for the item should be at least 1 and not more than 10')
     return;
-  }
+  } else {
+    matchingCart.quantity = newQuantity
 
-  matchingCart.quantity = newQuantity
+    // displaying newly input quantity on html
+    quantityLabel.innerHTML = newQuantity
+  }
 
   saveToStorage()
 }

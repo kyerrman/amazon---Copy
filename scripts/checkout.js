@@ -175,13 +175,10 @@ document.querySelectorAll('.js-save-quantity-link')
       const newQuantity = Number(quantityInput.value)
       
       // updating quantity to newly input quantity
-      updateQuantitty(productId, newQuantity, cartContainer)
+      updateQuantitty(productId, newQuantity, quantityLabel)
 
       // remove 'is-editing-quantity' class after editing quantity
       cartContainer.classList.remove('is-editing-quantity')
-
-      // displaying newly input quantity on html
-      quantityLabel.innerHTML = newQuantity
       
       updateTotalCheckoutItems()
     })
