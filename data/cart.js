@@ -63,12 +63,9 @@ export function updateQuantitty (productId, newQuantity, cartContainer) {
     }
   })
 
-  if (newQuantity < 0 || newQuantity > 10) {
+  if (newQuantity <= 0 || newQuantity > 10) {
     alert('Quantity for the item should be at least 1 and not more than 10')
     return;
-  }
-  if (newQuantity === 0) {
-    cartContainer.remove()
   }
 
   matchingCart.quantity = newQuantity
