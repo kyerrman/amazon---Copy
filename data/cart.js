@@ -78,3 +78,17 @@ export function updateQuantitty (productId, newQuantity, quantityLabel) {
 
   saveToStorage()
 }
+
+export function UpdateDeliveryOptions (productId, deliveryOptionId) {
+  let matchingCart;
+
+  cart.forEach((cartItem) => {
+    if (cartItem.productId === productId) {
+      matchingCart = cartItem
+    }
+  })
+
+  matchingCart.deliveryOptionId = deliveryOptionId
+
+  saveToStorage()
+}

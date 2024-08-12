@@ -1,4 +1,4 @@
-import { cart, removeFromCart, updateQuantitty } from "../data/cart.js";
+import { cart, removeFromCart, updateQuantitty, UpdateDeliveryOptions } from "../data/cart.js";
 import { products } from "../data/products.js";
 import dayjs from "https://unpkg.com/dayjs@1.11.10/esm/index.js"
 import { deliveryOptions, deliveryOptionsHTML } from "../data/deliveryOptions.js";
@@ -160,3 +160,15 @@ document.querySelectorAll('.js-save-quantity-link')
       updateTotalCheckoutItems()
     })
   })
+
+
+  // event listener for delivery options
+  document.querySelectorAll('.js-delivery-option')
+    .forEach((option) => {
+      option.addEventListener('click', () => {
+        const {productId, deliveryOptionId} = option.dataset
+        
+        UpdateDeliveryOptions(productId, deliveryOptionId)
+        
+      })
+    })
