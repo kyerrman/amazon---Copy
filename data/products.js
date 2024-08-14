@@ -1,3 +1,17 @@
+// function for getting the whole product via productId
+export function getProduct (productId) {
+  let matchingProduct;
+
+  products.forEach((product) => {
+    if (product.id === productId) {
+      matchingProduct = product
+    }
+  })
+
+  return matchingProduct
+
+}
+
 export const products = [
   {
     id: "dib3dn9-dj30394-3i43i-9efnef",

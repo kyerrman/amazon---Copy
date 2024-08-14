@@ -1,7 +1,7 @@
 import { cart, removeFromCart, updateQuantitty, UpdateDeliveryOptions } from "../../data/cart.js";
-import { products } from "../../data/products.js";
+import { getProduct, products } from "../../data/products.js";
 import dayjs from "https://unpkg.com/dayjs@1.11.10/esm/index.js"
-import { deliveryOptions, deliveryOptionsHTML } from "../../data/deliveryOptions.js";
+import { deliveryOptions, deliveryOptionsHTML, getDeliveryOption } from "../../data/deliveryOptions.js";
 
 // creating a function which contains all the code,
 // and re-running it to update the page
@@ -14,22 +14,11 @@ export function renderOrderSummary () {
 
   // loop through cart and generate html
   cart.forEach((cartItem) => {
-    let productId = cartItem.productId
-    let matchingProduct;
+    const productId = cartItem.productId
 
-    products.forEach((product) => {
-      if (product.id === productId) {
-        matchingProduct = product
-      }
-    })
+    let matchingProduct = getProduct(productId);
 
-    let deliveryOption;
-
-    deliveryOptions.forEach((option) => {
-      if (option.id === cartItem.deliveryOptionId) {
-        deliveryOption = option
-      }
-    })
+    let deliveryOption = getDeliveryOption(cartItem);
     
     const today = dayjs()
     const deliveryDate = today.add(

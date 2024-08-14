@@ -58,3 +58,17 @@ export function deliveryOptionsHTML (matchingProduct, dayjs, cartItem) {
 
   return html
 }
+
+// function for getting the whole delivery option
+// via id
+export function getDeliveryOption (cartItem) {
+  let deliveryOption;
+
+  deliveryOptions.forEach((option) => {
+    if (option.id === cartItem.deliveryOptionId) {
+      deliveryOption = option
+    }
+  })
+
+  return deliveryOption || deliveryOptions[0]
+}
