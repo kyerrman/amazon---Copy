@@ -91,9 +91,9 @@ export function renderOrderSummary () {
 
         const productId = deleteLink.dataset.productId
         
-        const cartContainer = document.querySelector(`.js-cart-item-container-${productId}`)
+        removeFromCart(productId)
         
-        removeFromCart(productId, cartContainer)
+        renderOrderSummary()
         renderPaymentSummary()
         updateTotalCheckoutItems()
       })

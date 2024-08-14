@@ -37,7 +37,7 @@ export function addToCart (productId, quantitySelector) {
 }
 
 // function for removing cart from page
-export function removeFromCart (productId, cartContainer) {
+export function removeFromCart (productId) {
 
   let updatedCart = []
 
@@ -48,7 +48,6 @@ export function removeFromCart (productId, cartContainer) {
   })
 
   cart = updatedCart
-  cartContainer.remove()
 
   saveToStorage()
 }
