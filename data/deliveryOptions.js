@@ -1,3 +1,5 @@
+import dayjs from "https://unpkg.com/dayjs@1.11.10/esm/index.js"
+
 export const deliveryOptions = [{
   id: '1',
   deliveryDays: 7,
@@ -12,19 +14,11 @@ export const deliveryOptions = [{
   pricePence: 899
 }]
 
-export function deliveryOptionsHTML (matchingProduct, dayjs, cartItem) {
+export function deliveryOptionsHTML (matchingProduct, cartItem) {
   let html = ''
 
   deliveryOptions.forEach((deliveryOption) => {
-    // importing dayjs library for days calculations
-    const today = dayjs()
-    const deliveryDate = today.add(
-      deliveryOption.deliveryDays,
-      'day'
-    )
-    // making format 
-    const dateString = deliveryDate.format('dddd, MMMM DD, YYYY')
-
+    const dateString = calculateDeliveryDate(deliveryOption)
     const priceString = deliveryOption.pricePence === 0
       ? 'FREE'
       : `£${(deliveryOption.pricePence / 100).toFixed(2)} -`
@@ -71,4 +65,17 @@ export function getDeliveryOption (cartItem) {
   })
 
   return deliveryOption || deliveryOptions[0]
+}
+
+export function calculateDeliveryDate (deliveryOption) {
+  // importing dayjs library for days calculations
+  const today = dayjs()
+  const deliveryDate = today.add(
+    deliveryOption.deliveryDays,
+    'day'
+  )
+  // making format 
+  const dateString = deliveryDate.format('dddd, MMMM DD, YYYY')
+
+  return dateString
 }

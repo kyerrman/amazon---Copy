@@ -1,8 +1,8 @@
 import { cart, removeFromCart, updateQuantitty, UpdateDeliveryOptions } from "../../data/cart.js";
-import { getProduct, products } from "../../data/products.js";
-import dayjs from "https://unpkg.com/dayjs@1.11.10/esm/index.js"
-import { deliveryOptions, deliveryOptionsHTML, getDeliveryOption } from "../../data/deliveryOptions.js";
+import { getProduct} from "../../data/products.js";
+import { deliveryOptionsHTML, getDeliveryOption, calculateDeliveryDate } from "../../data/deliveryOptions.js";
 import { renderPaymentSummary } from "./paymentSummary.js";
+import { renderChecoutHeader } from "./checkoutHeader.js";
 
 // creating a function which contains all the code,
 // and re-running it to update the page
@@ -10,8 +10,7 @@ export function renderOrderSummary () {
 
   let checkoutHTML = ''
 
-  // call function to update checkout
-  updateTotalCheckoutItems()
+  
 
   // loop through cart and generate html
   cart.forEach((cartItem) => {
@@ -20,13 +19,7 @@ export function renderOrderSummary () {
     let matchingProduct = getProduct(productId);
 
     let deliveryOption = getDeliveryOption(cartItem);
-    
-    const today = dayjs()
-    const deliveryDate = today.add(
-      deliveryOption.deliveryDays,
-      'day'
-    )
-    const dateString = deliveryDate.format('dddd, MMMM DD, YYYY')
+    const dateString = calculateDeliveryDate(deliveryOption)
 
     let htmlGeneration = `
       <div class="cart-item-container js-cart-item-container-${matchingProduct.id}">
@@ -69,7 +62,7 @@ export function renderOrderSummary () {
             <div class="delivery-options-title">
               Choose a delivery option:
             </div>
-            ${deliveryOptionsHTML(matchingProduct, dayjs, cartItem)}
+            ${deliveryOptionsHTML(matchingProduct, cartItem)}
           </div>
         </div>
       </div>
@@ -92,31 +85,14 @@ export function renderOrderSummary () {
         const productId = deleteLink.dataset.productId
         
         removeFromCart(productId)
-        
         renderOrderSummary()
         renderPaymentSummary()
-        updateTotalCheckoutItems()
+        renderChecoutHeader()
       })
     })
 
 
-  // create fucntion to update checkout
-  function updateTotalCheckoutItems () {
-    let totalCartQuantityPage = document.querySelector('.js-total-cart-quantity')
-
-    let totalItems = 0
-
-    cart.forEach((cartItem) => {
-      totalItems += cartItem.quantity
-    })
-
-    // condition for if item is 1 or more
-    totalItems === 1 
-      ? totalCartQuantityPage.innerHTML = `${totalItems} item`
-      : totalCartQuantityPage.innerHTML = `${totalItems} items`
-
-
-  }
+  
 
   // adding class to activate input for updating cart quantity
   document.querySelectorAll('.js-update-quantity-link')
@@ -152,7 +128,7 @@ export function renderOrderSummary () {
 
         renderPaymentSummary()
         
-        updateTotalCheckoutItems()
+        renderChecoutHeader()
       })
     })
 
