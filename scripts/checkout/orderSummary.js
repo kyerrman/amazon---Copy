@@ -2,6 +2,7 @@ import { cart, removeFromCart, updateQuantitty, UpdateDeliveryOptions } from "..
 import { getProduct, products } from "../../data/products.js";
 import dayjs from "https://unpkg.com/dayjs@1.11.10/esm/index.js"
 import { deliveryOptions, deliveryOptionsHTML, getDeliveryOption } from "../../data/deliveryOptions.js";
+import { renderPaymentSummary } from "./paymentSummary.js";
 
 // creating a function which contains all the code,
 // and re-running it to update the page
@@ -93,7 +94,7 @@ export function renderOrderSummary () {
         const cartContainer = document.querySelector(`.js-cart-item-container-${productId}`)
         
         removeFromCart(productId, cartContainer)
-
+        renderPaymentSummary()
         updateTotalCheckoutItems()
       })
     })
@@ -148,6 +149,8 @@ export function renderOrderSummary () {
 
         // remove 'is-editing-quantity' class after editing quantity
         cartContainer.classList.remove('is-editing-quantity')
+
+        renderPaymentSummary()
         
         updateTotalCheckoutItems()
       })
@@ -164,6 +167,8 @@ export function renderOrderSummary () {
 
         // re-run whole code anytime we click on delivery option
         renderOrderSummary()
+
+        renderPaymentSummary()
         
       })
     })
