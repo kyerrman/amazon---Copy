@@ -56,7 +56,7 @@ function saveToStorage () {
   localStorage.setItem('cart', JSON.stringify(cart))
 }
 
-export function updateQuantitty (productId, newQuantity, quantityLabel) {
+export function updateQuantitty (productId, newQuantity) {
   let matchingCart;
 
   cart.forEach((cartItem) => {
@@ -70,9 +70,6 @@ export function updateQuantitty (productId, newQuantity, quantityLabel) {
     return;
   } else {
     matchingCart.quantity = newQuantity
-
-    // displaying newly input quantity on html
-    quantityLabel.innerHTML = newQuantity
   }
 
   saveToStorage()

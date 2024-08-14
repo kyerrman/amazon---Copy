@@ -123,13 +123,13 @@ export function renderOrderSummary () {
         const newQuantity = Number(quantityInput.value)
         
         // updating quantity to newly input quantity
-        updateQuantitty(productId, newQuantity, quantityLabel)
+        updateQuantitty(productId, newQuantity)
 
         // remove 'is-editing-quantity' class after editing quantity
         cartContainer.classList.remove('is-editing-quantity')
 
         renderPaymentSummary()
-        
+        renderOrderSummary()
         renderChecoutHeader()
       })
     })
