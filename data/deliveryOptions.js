@@ -67,15 +67,31 @@ export function getDeliveryOption (cartItem) {
   return deliveryOption || deliveryOptions[0]
 }
 
+
+function isWeekend(date) {
+  const dayOfWeek = date.format('dddd');
+  return dayOfWeek === 'Saturday' || dayOfWeek === 'Sunday';
+}
+
+
 export function calculateDeliveryDate (deliveryOption) {
-  // importing dayjs library for days calculations
-  const today = dayjs()
-  const deliveryDate = today.add(
-    deliveryOption.deliveryDays,
-    'day'
-  )
+
+  let numberOfDays = deliveryOption.deliveryDays
+  let deliveryDate = dayjs()
+
+  while (numberOfDays > 0) {
+
+    deliveryDate = deliveryDate.add(1, 'day')
+    
+    if (!isWeekend(deliveryDate)) {
+      numberOfDays --
+    }
+  }
+
   // making format 
   const dateString = deliveryDate.format('dddd, MMMM DD, YYYY')
 
   return dateString
+
+
 }

@@ -19,6 +19,8 @@ export function renderOrderSummary () {
     let matchingProduct = getProduct(productId);
 
     let deliveryOption = getDeliveryOption(cartItem);
+
+
     const dateString = calculateDeliveryDate(deliveryOption)
 
     let htmlGeneration = `
