@@ -117,7 +117,6 @@ export function renderOrderSummary () {
         const cartContainer = document.querySelector(`.js-cart-item-container-${productId}`)
 
         const quantityInput = document.querySelector(`.js-quantity-input-${productId}`)
-        const quantityLabel = document.querySelector(`.js-quantity-label-${productId}`)
 
         // collecting value of newly input quantity
         const newQuantity = Number(quantityInput.value)
