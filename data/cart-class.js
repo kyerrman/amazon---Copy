@@ -1,16 +1,18 @@
 class Cart {
   cartItems;
-  storageName;
+  // '#' makes the property private
+  // hence property cannot be accessed outside the class
+  #storageName;
 
   // preset code
   constructor (storageName) {
-    this.storageName = storageName
+    this.#storageName = storageName
 
-    this.loadFromLocalStorage()
+    this.#loadFromLocalStorage()
   }
 
-  loadFromLocalStorage () {
-    this.cartItems = JSON.parse(localStorage.getItem(this.storageName)) || [{
+  #loadFromLocalStorage () {
+    this.cartItems = JSON.parse(localStorage.getItem(this.#storageName)) || [{
       productId: 'e43638ce-6aa0-4b85-b27f-e1d07eb678c6',
       quantity: 3,
       deliveryOptionId: '3'
@@ -22,7 +24,7 @@ class Cart {
   };
   
   saveToStorage () {
-    localStorage.setItem(this.storageName, JSON.stringify(this.cartItems))
+    localStorage.setItem(this.#storageName, JSON.stringify(this.cartItems))
   };
 
   // function for cart addition
