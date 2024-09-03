@@ -12,6 +12,30 @@ export function getProduct (productId) {
 
 }
 
+class Product {
+  id;
+  image;
+  name;
+  rating;
+  pricePence;
+
+  constructor (productDetails) {
+    this.id = productDetails.id
+    this.image = productDetails.image
+    this.name = productDetails.name
+    this.rating = productDetails.rating
+    this.pricePence = productDetails.pricePence
+  }
+
+  getStarsUrl () {
+    return `images/ratings/rating-${this.rating.stars * 10}.png`
+  }
+
+  getPrice () {
+    return `£${(this.pricePence / 100).toFixed(2)}`
+  }
+}
+
 export const products = [
   {
     id: "dib3dn9-dj30394-3i43i-9efnef",
@@ -767,4 +791,6 @@ export const products = [
       "mens"
     ]
   }
-];
+].map((productDetails) => {
+  return new Product(productDetails)
+});
